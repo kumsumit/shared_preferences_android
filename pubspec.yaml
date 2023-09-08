@@ -1,0 +1,36 @@
+name: shared_preferences_android
+publish_to: none
+description: Android implementation of the shared_preferences plugin
+repository: https://github.com/flutter/packages/tree/main/packages/shared_preferences/shared_preferences_android
+issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+shared_preferences%22
+version: 2.2.1
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+  flutter: ">=3.13.0"
+
+flutter:
+  plugin:
+    implements: shared_preferences
+    platforms:
+      android:
+        package: io.flutter.plugins.sharedpreferences
+        pluginClass: SharedPreferencesPlugin
+        dartPluginClass: SharedPreferencesAndroid
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences_platform_interface:
+    git: https://github.com/kumsumit/shared_preferences_platform_interface.git
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pigeon: 
+    git: https://github.com/kumsumit/pigeon.git
+
+topics:
+  - persistence
+  - shared-preferences
+  - storage
