@@ -238,10 +238,11 @@ packages:
   plugin_platform_interface:
     dependency: transitive
     description:
-      name: plugin_platform_interface
-      sha256: "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: f19d3faf8d449aa73be0c3c71bd7e67fc0fb28bf
+      url: "https://github.com/kumsumit/plugin_platform_interface.git"
+    source: git
     version: "2.1.8"
   pub_semver:
     dependency: transitive
@@ -254,10 +255,11 @@ packages:
   shared_preferences_platform_interface:
     dependency: "direct main"
     description:
-      name: shared_preferences_platform_interface
-      sha256: "57cbf196c486bc2cf1f02b85784932c6094376284b3ad5779d1b1c6c6a816b80"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: adb7cbf691d52dd414dbbb85909a7fd71615552a
+      url: "https://github.com/kumsumit/shared_preferences_platform_interface.git"
+    source: git
     version: "2.4.1"
   sky_engine:
     dependency: transitive
@@ -353,5 +355,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.9.0 <4.0.0"
-  flutter: ">=3.35.0"
+  dart: ">=3.11.0 <4.0.0"
+  flutter: ">=3.41.0"

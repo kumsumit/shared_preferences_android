@@ -183,9 +183,9 @@
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///Users/amitsharan/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
+      "rootUri": "file:///Users/amitsharan/.pub-cache/git/plugin_platform_interface-f19d3faf8d449aa73be0c3c71bd7e67fc0fb28bf/",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.8"
     },
     {
       "name": "pub_semver",
@@ -195,9 +195,9 @@
     },
     {
       "name": "shared_preferences_platform_interface",
-      "rootUri": "file:///Users/amitsharan/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1",
+      "rootUri": "file:///Users/amitsharan/.pub-cache/git/shared_preferences_platform_interface-adb7cbf691d52dd414dbbb85909a7fd71615552a/",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.11"
     },
     {
       "name": "sky_engine",
