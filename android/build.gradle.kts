@@ -1,25 +1,16 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    id("com.android.library")
+}
+
 group = "io.flutter.plugins.sharedpreferences"
 version = "1.0-SNAPSHOT"
 
-buildscript {
-    ext.kotlin_version = '2.3.20'
-    repositories {
+repositories {
         google()
         mavenCentral()
     }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.13.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
-    }
-}
-
-rootProject.allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
 
 allprojects {
     gradle.projectsEvaluated {
@@ -29,8 +20,6 @@ allprojects {
     }
 }
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 
 android {
     namespace = "io.flutter.plugins.sharedpreferences"
@@ -41,12 +30,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_21.toString()
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
     }
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+        getByName("main") {
+            java.srcDirs("src/main/kotlin")
+        }
     }
 
     defaultConfig {
@@ -61,18 +54,6 @@ android {
         baseline = file("lint-baseline.xml")
     }
 
-    dependencies {
-        implementation("androidx.datastore:datastore:1.2.1")
-        implementation("androidx.datastore:datastore-preferences:1.2.1")
-        implementation("androidx.preference:preference:1.2.1")
-        testImplementation("junit:junit:4.13.2")
-        testImplementation("androidx.test:core-ktx:1.18.0")
-        testImplementation("androidx.test.ext:junit-ktx:1.3.0")
-        testImplementation("org.robolectric:robolectric:4.16")
-        testImplementation("org.mockito:mockito-inline:5.2.0")
-        testImplementation("io.mockk:mockk:1.14.9")
-    }
-
     testOptions {
         unitTests.includeAndroidResources = true
         unitTests.returnDefaultValues = true
@@ -85,3 +66,15 @@ android {
         }
     }
 }
+
+ dependencies {
+        implementation("androidx.datastore:datastore:1.2.1")
+        implementation("androidx.datastore:datastore-preferences:1.2.1")
+        implementation("androidx.preference:preference:1.2.1")
+        testImplementation("junit:junit:4.13.2")
+        testImplementation("androidx.test:core-ktx:1.18.0")
+        testImplementation("androidx.test.ext:junit-ktx:1.3.0")
+        testImplementation("org.robolectric:robolectric:4.16")
+        testImplementation("org.mockito:mockito-inline:5.2.0")
+        testImplementation("io.mockk:mockk:1.14.9")
+    }
