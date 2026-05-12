@@ -1,5 +1,7 @@
+import com.android.build.api.dsl.LibraryExtension
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.gradle.api.tasks.compile.JavaCompile
+import org.gradle.api.tasks.testing.Test
 
 plugins {
     id("com.android.library")
@@ -23,7 +25,7 @@ allprojects {
 }
 
 
-android {
+configure<LibraryExtension> {
     namespace = "io.flutter.plugins.sharedpreferences"
     compileSdk = 37
 
@@ -40,17 +42,17 @@ android {
 
     sourceSets {
         getByName("main") {
-            java.srcDirs("src/main/kotlin")
+            java.directories.add("src/main/kotlin")
         }
     }
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 37
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     lint {
+        targetSdk = 37
         checkAllWarnings = true
         warningsAsErrors = true
         disable.addAll(listOf("AndroidGradlePluginVersion", "InvalidPackage", "GradleDependency", "NewerVersionAvailable"))
@@ -58,13 +60,16 @@ android {
     }
 
     testOptions {
-        unitTests.includeAndroidResources = true
-        unitTests.returnDefaultValues = true
-        unitTests.all {
-            outputs.upToDateWhen { false }
-            testLogging {
-               events("passed", "skipped", "failed", "standardOut", "standardError")
-               showStandardStreams = true
+        targetSdk = 37
+        unitTests {
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
+            all { test: Test ->
+                test.outputs.upToDateWhen { false }
+                test.testLogging {
+                   events("passed", "skipped", "failed", "standardOut", "standardError")
+                   showStandardStreams = true
+                }
             }
         }
     }
