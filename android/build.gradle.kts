@@ -3,6 +3,7 @@ import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
     id("com.android.library")
+    id("org.jetbrains.kotlin.android")
 }
 
 group = "io.flutter.plugins.sharedpreferences"
