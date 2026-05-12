@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
     id("com.android.library")
@@ -14,8 +15,8 @@ repositories {
 
 allprojects {
     gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        tasks.withType<JavaCompile> {
+            options.compilerArgs.addAll(listOf("-Xlint:unchecked", "-Xlint:deprecation"))
         }
     }
 }
@@ -51,7 +52,7 @@ android {
     lint {
         checkAllWarnings = true
         warningsAsErrors = true
-        disable('AndroidGradlePluginVersion', 'InvalidPackage', 'GradleDependency', 'NewerVersionAvailable')
+        disable.addAll(listOf("AndroidGradlePluginVersion", "InvalidPackage", "GradleDependency", "NewerVersionAvailable"))
         baseline = file("lint-baseline.xml")
     }
 
@@ -59,9 +60,9 @@ android {
         unitTests.includeAndroidResources = true
         unitTests.returnDefaultValues = true
         unitTests.all {
+            outputs.upToDateWhen { false }
             testLogging {
-               events "passed", "skipped", "failed", "standardOut", "standardError"
-               outputs.upToDateWhen {false}
+               events("passed", "skipped", "failed", "standardOut", "standardError")
                showStandardStreams = true
             }
         }
