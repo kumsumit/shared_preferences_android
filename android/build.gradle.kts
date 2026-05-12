@@ -42,7 +42,7 @@ configure<LibraryExtension> {
 
     sourceSets {
         getByName("main") {
-            java.srcDir("src/main/kotlin")
+            java.directories.add("src/main/kotlin")
         }
     }
 
@@ -74,23 +74,23 @@ configure<LibraryExtension> {
         unitTests {
             isIncludeAndroidResources = true
             isReturnDefaultValues = true
-
-            all {
-                outputs.upToDateWhen { false }
-
-                testLogging {
-                    events(
-                        "passed",
-                        "skipped",
-                        "failed",
-                        "standardOut",
-                        "standardError"
-                    )
-
-                    showStandardStreams = true
-                }
-            }
         }
+    }
+}
+
+tasks.withType<Test>().configureEach {
+    outputs.upToDateWhen { false }
+
+    testLogging {
+        events(
+            "passed",
+            "skipped",
+            "failed",
+            "standardOut",
+            "standardError"
+        )
+
+        showStandardStreams = true
     }
 }
 
