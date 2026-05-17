@@ -1,12 +1,9 @@
 import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.api.tasks.testing.Test
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
 }
 
 group = "io.flutter.plugins.sharedpreferences"
@@ -42,7 +39,7 @@ configure<LibraryExtension> {
 
     sourceSets {
         getByName("main") {
-            java.directories.add("src/main/kotlin")
+            kotlin.directories.add("src/main/kotlin")
         }
     }
 
@@ -94,9 +91,9 @@ tasks.withType<Test>().configureEach {
     }
 }
 
-tasks.withType<KotlinCompile>().configureEach {
+kotlin {
     compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_21)
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
     }
 }
 
